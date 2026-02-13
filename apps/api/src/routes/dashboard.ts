@@ -47,7 +47,7 @@ dashboardRouter.get("/stats", async (_req: Request, res: Response) => {
     ]);
 
     const leadsByStage: Record<string, number> = {};
-    leadsByStageRaw.forEach((item) => {
+    leadsByStageRaw.forEach((item: { stage: string; _count: { id: number } }) => {
       leadsByStage[item.stage] = item._count.id;
     });
 

@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "tsx watch src/index.ts",
-    "build": "pnpm --filter @western-mass-septic/config build && pnpm --filter @western-mass-septic/shared build && tsc",
+    "build": "pnpm -C ../.. exec prisma generate && pnpm --filter @western-mass-septic/config build && pnpm --filter @western-mass-septic/shared build && tsc",
     "start": "pnpm run build && node dist/index.js",
     "lint": "eslint ."
   },
