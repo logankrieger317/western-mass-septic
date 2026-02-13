@@ -62,6 +62,17 @@ pnpm dev
 - **Backend (API):** Follow [Patterns-And-Standards](https://github.com/your-org/Patterns-And-Standards) — Claims / Service-Template for routes, handlers, services, naming (kebab-case folders, `*.handler.ts`, `*.service.ts`).
 - **Frontend:** Component and state patterns from Tenant-Portal / Frontend-Safelease where applicable; config-driven theme and content from `config/`.
 
+## Deploy on Railway (customer demo)
+
+1. In [Railway](https://railway.app), **New Project** → **Deploy from GitHub** → select `western-mass-septic`.
+2. Add **PostgreSQL** (Railway will set `DATABASE_URL`).
+3. For the **API service** (recommended for a full demo):
+   - **Root directory:** leave blank (monorepo root).
+   - **Build:** `pnpm install && pnpm --filter @western-mass-septic/config build && pnpm --filter @western-mass-septic/shared build`
+   - **Start:** `pnpm --filter @western-mass-septic/api dev` (or use a production start if you add one).
+   - **Variables:** ensure `DATABASE_URL` is set (auto from PostgreSQL). Run migrations/seed in Railway shell: `pnpm db:push && pnpm db:seed`.
+4. Optionally add separate services for **landing** and **CRM** (static or Node), or build and serve them from the same project.
+
 ## Customization
 
 - **Branding & pipeline:** Edit `config/company.ts` (name, contact, theme, pipeline stages, lead fields).
