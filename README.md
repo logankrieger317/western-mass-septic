@@ -68,9 +68,9 @@ pnpm dev
 2. Add **PostgreSQL** (Railway will set `DATABASE_URL`).
 3. For the **API service** (recommended for a full demo):
    - **Root directory:** leave blank (monorepo root).
-   - **Build:** `pnpm install && pnpm --filter @western-mass-septic/config build && pnpm --filter @western-mass-septic/shared build`
-   - **Start:** `pnpm --filter @western-mass-septic/api dev` (or use a production start if you add one).
-   - **Variables:** ensure `DATABASE_URL` is set (auto from PostgreSQL). Run migrations/seed in Railway shell: `pnpm db:push && pnpm db:seed`.
+   - **Build:** Railpack auto-runs `pnpm --filter @western-mass-septic/api build` (this now builds config + shared first, then the API).
+   - **Start:** `pnpm --filter @western-mass-septic/api start` (serves `node dist/index.js`).
+   - **Variables:** ensure `DATABASE_URL` is set (auto from PostgreSQL). In Railway shell, run `pnpm db:push && pnpm db:seed` once to apply schema and seed data.
 4. Optionally add separate services for **landing** and **CRM** (static or Node), or build and serve them from the same project.
 
 ## Customization

@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "pnpm --filter @western-mass-septic/config build && pnpm --filter @western-mass-septic/shared build && tsc -b && vite build",
     "preview": "vite preview",
     "lint": "eslint ."
   },
