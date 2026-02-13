@@ -1,0 +1,72 @@
+# Western Mass Septic — Landing + CRM
+
+Monorepo for **Western Mass Septic**: a public landing page and an internal CRM, following the same patterns as [small-biz-crm](https://github.com/your-org/small-biz-crm) and aligned with [Patterns-And-Standards](https://github.com/your-org/Patterns-And-Standards).
+
+## Structure
+
+- **`apps/landing`** — React + Vite + Tailwind. Public site: hero, services, about, testimonials, FAQ, contact form. Content and theme from `config/`.
+- **`apps/crm`** — React + Vite + MUI. Dashboard, pipeline (Kanban), leads, activities, calendar, settings. Auth via JWT.
+- **`apps/api`** — Express + Prisma. REST API: auth, leads, notes, activities, calendar, documents, contact form submission, dashboard stats.
+- **`config/`** — Company branding, theme, pipeline stages, lead fields, and landing copy (single source of truth).
+- **`packages/shared`** — Shared TypeScript types and Zod schemas.
+- **`prisma/`** — PostgreSQL schema and seed.
+
+## Prerequisites
+
+- Node ≥18  
+- pnpm 9.x  
+- PostgreSQL
+
+## Setup
+
+```bash
+# Install dependencies
+pnpm install
+
+# Copy env and set DATABASE_URL
+cp .env.example .env
+
+# Generate Prisma client and push schema
+pnpm db:generate
+pnpm db:push
+
+# Seed (creates admin@westernmassseptic.com / admin123)
+pnpm db:seed
+```
+
+## Develop
+
+```bash
+# Run API (port 3001), landing (5173), and CRM (5174)
+pnpm dev
+```
+
+- Landing: http://localhost:5173  
+- CRM: http://localhost:5174 (login with seeded admin)  
+- API: http://localhost:3001 (e.g. `/api/health`)
+
+## Scripts
+
+| Command        | Description                |
+|----------------|----------------------------|
+| `pnpm dev`     | Run all apps in dev mode   |
+| `pnpm build`   | Build all apps             |
+| `pnpm db:generate` | Prisma generate        |
+| `pnpm db:push` | Prisma db push             |
+| `pnpm db:migrate` | Prisma migrate dev     |
+| `pnpm db:seed` | Seed database              |
+| `pnpm db:studio` | Prisma Studio            |
+
+## Patterns & standards
+
+- **Backend (API):** Follow [Patterns-And-Standards](https://github.com/your-org/Patterns-And-Standards) — Claims / Service-Template for routes, handlers, services, naming (kebab-case folders, `*.handler.ts`, `*.service.ts`).
+- **Frontend:** Component and state patterns from Tenant-Portal / Frontend-Safelease where applicable; config-driven theme and content from `config/`.
+
+## Customization
+
+- **Branding & pipeline:** Edit `config/company.ts` (name, contact, theme, pipeline stages, lead fields).
+- **Landing copy & sections:** Edit `config/content.ts` and the `sections` array.
+
+## License
+
+Private / internal use.

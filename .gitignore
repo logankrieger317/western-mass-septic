@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.turbo/
+.env
+.env.local
+.env.*.local
+*.log
+.DS_Store
+prisma/*.db
+# Built workspace packages (built on CI/Railway)
+config/dist
+packages/shared/dist

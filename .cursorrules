@@ -1,0 +1,26 @@
+# Western Mass Septic — Cursor Rules
+
+## Patterns and standards
+
+- This repo follows the same **monorepo and app structure** as the reference **small-biz-crm** project (landing + CRM + API + config + shared + prisma).
+- For **backend (API)** conventions (routes, handlers, services, middleware, naming), refer to **Patterns-And-Standards**: Claims, Service-Template, and naming (e.g. kebab-case folders, `*.handler.ts`, `*.service.ts`).
+- For **frontend** conventions (components, state, routing, styling), refer to **Patterns-And-Standards**: Tenant-Portal and Frontend-Safelease where applicable.
+
+## Project layout
+
+- `config/` — Single source of truth for company name, theme, pipeline stages, lead fields, and landing page content. Do not duplicate this in apps.
+- `apps/api` — Express REST API; uses `@western-mass-septic/config` and `@western-mass-septic/shared`.
+- `apps/landing` — Public marketing site; uses `@config` (alias to config) and `@western-mass-septic/shared` for contact form validation.
+- `apps/crm` — Internal CRM; uses `@config` and `@western-mass-septic/shared`.
+- `packages/shared` — Types and Zod schemas only; no UI or config.
+
+## Naming and imports
+
+- Use workspace packages: `@western-mass-septic/config`, `@western-mass-septic/shared`, and app names `@western-mass-septic/landing`, `@western-mass-septic/crm`, `@western-mass-septic/api`.
+- In landing and CRM, use the `@config` alias for `company` and `content` imports.
+
+## When adding features
+
+- New API routes: follow route registration and handler patterns from Patterns-And-Standards (Claims/Service-Template).
+- New landing sections: add section key to `SectionKey` and `sectionComponents` in `apps/landing/src/App.tsx`, and add content in `config/content.ts`.
+- New pipeline stages or lead fields: update `config/company.ts` only; API and CRM consume it.

@@ -1,0 +1,27 @@
+{
+  "name": "western-mass-septic",
+  "private": true,
+  "packageManager": "pnpm@9.15.4",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "lint": "turbo lint",
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push",
+    "db:migrate": "prisma migrate dev",
+    "db:seed": "tsx prisma/seed.ts",
+    "db:studio": "prisma studio",
+    "clean": "turbo clean && rm -rf node_modules"
+  },
+  "devDependencies": {
+    "turbo": "^2.3.0",
+    "typescript": "^5.7.0",
+    "tsx": "^4.19.0",
+    "prisma": "^6.2.0"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.2.0",
+    "@western-mass-septic/config": "workspace:*"
+  }
+}

@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: #9B804A;
+  --color-primary-dark: #7a6639;
+  --color-primary-light: #b8985c;
+  --color-secondary: #132A1F;
+  --color-secondary-dark: #0d1f16;
+  --color-accent: #F2EDE3;
+  --color-background: #F8F9FA;
+  --color-foreground: #1A1A1A;
+  --font-family: "Libre Franklin", system-ui, sans-serif;
+  --border-radius: 8px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  margin: 0;
+  padding: 0;
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 font-semibold text-white rounded transition-all duration-200;
+    background-color: var(--color-primary);
+  }
+  .btn-primary:hover {
+    background-color: var(--color-primary-dark);
+    @apply shadow-lg;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3 font-semibold rounded transition-all duration-200 border-2;
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+  .btn-secondary:hover {
+    background-color: var(--color-primary);
+    @apply text-white shadow-lg;
+  }
+
+  .section-heading {
+    @apply text-3xl md:text-4xl font-bold tracking-tight;
+    color: var(--color-secondary);
+  }
+
+  .section-subheading {
+    @apply text-lg text-gray-600 mt-4 max-w-2xl mx-auto;
+  }
+}
