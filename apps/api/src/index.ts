@@ -20,7 +20,12 @@ const PORT = process.env.PORT || 3001;
 app.use(helmet());
 app.use(
   cors({
-    origin: process.env.CORS_ORIGINS?.split(",") || ["http://localhost:5173", "http://localhost:5174"],
+    origin: process.env.CORS_ORIGINS?.split(",") || [
+      "http://localhost:5173",
+      "http://localhost:5174",
+      "https://western-mass-septiclanding-production.up.railway.app",
+      "https://western-mass-septiccrm-production.up.railway.app",
+    ],
     credentials: true,
   })
 );
@@ -44,8 +49,8 @@ app.get("/api/health", (_req, res) => {
 
 app.use(errorHandler);
 
-app.listen(PORT, () => {
-  console.log(`API server running on http://localhost:${PORT}`);
+app.listen(Number(PORT), "0.0.0.0", () => {
+  console.log(`API server running on http://0.0.0.0:${PORT}`);
 });
 
 export default app;
