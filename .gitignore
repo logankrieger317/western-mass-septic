@@ -10,3 +10,7 @@ prisma/*.db
 # Built workspace packages (built on CI/Railway)
 config/dist
 packages/shared/dist
+
+# Compiled vite configs (tsc -b generates these from .ts)
+apps/*/vite.config.js
+apps/*/vite.config.d.ts
